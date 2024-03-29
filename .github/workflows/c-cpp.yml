@@ -23,7 +23,7 @@ jobs:
           cd ../
           echo "Current directory: $(pwd)"
           ls 
-          find . -name 15_puzzle.spec -exec readlink -f {} \;
+          find . -name 15_puzzle.spec #-exec readlink -f {} \;
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
           mv 15_puzzle ~/rpmbuild/SOURCES/15_puzzle-1.0          
           cp ./15_puzzle/15_puzzle.spec ~/rpmbuild/SPECS/15_puzzle.spec
