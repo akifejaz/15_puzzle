@@ -29,7 +29,11 @@ jobs:
           tar --create --file ~/rpmbuild/SOURCES/15_puzzle-1.0.tar.gz ~/rpmbuild/SOURCES/15_puzzle-1.0
           rpmbuild -ba ~/rpmbuild/SPECS/15_puzzle.spec
           # rpmbuild -ba --define "_topdir $(pwd)/rpmbuild" rpmbuild/SPECS/pakage.spec
-
+          
+      - name: Print
+        run: |
+           ls ~/rpmbuild/*
+           
       - name: Upload RPM
         uses: actions/upload-artifact@v2
         with:
