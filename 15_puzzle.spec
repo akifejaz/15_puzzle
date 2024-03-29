@@ -15,7 +15,8 @@ Requires:  make
 This is a simple C/C++ based 15 puzzle solver. It uses the A* algo to solve the puzzle.
 
 %prep
-%setup -q
+%setup -q -n 15_puzzle-1.0
+
 
 
 %build
