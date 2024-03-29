@@ -14,11 +14,19 @@ jobs:
     steps:
       - name: Build
         run: |
+          echo "Current directory: $(pwd)"
+          git clone https://github.com/akifejaz/15_puzzle
+          cd 15_puzzle
           make clean
           make
+          cd ..
+          ls -l
+          echo "Current directory: $(pwd)"
 
       - name: Make RPM
         run: |
+          echo "Current directory: $(pwd)"
+          ls -l
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
           mv 15_puzzle ~/rpmbuild/SOURCES/15_puzzle-1.0
           tar czf ~/rpmbuild/SOURCES/15_puzzle-1.0.tar.gz -C ~/rpmbuild/SOURCES/ 15_puzzle-1.0
