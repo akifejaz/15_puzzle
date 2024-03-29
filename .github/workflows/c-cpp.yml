@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls 
-          find . -name "filename" -exec readlink -f {} \;
+          find . -name 15_puzzle.spec -exec readlink -f {} \;
           mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
           mv 15_puzzle ~/rpmbuild/SOURCES/15_puzzle-1.0
           tar czf ~/rpmbuild/SOURCES/15_puzzle-1.0.tar.gz -C ~/rpmbuild/SOURCES/ 15_puzzle-1.0
