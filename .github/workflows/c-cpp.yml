@@ -32,7 +32,7 @@ jobs:
           
       - name: Print
         run: |
-           ls ~/rpmbuild/*
+           ls $GITHUB_WORKSPACE/rpm_pkg/rpmbuild/*
            
       - name: Upload RPM
         uses: actions/upload-artifact@v2
