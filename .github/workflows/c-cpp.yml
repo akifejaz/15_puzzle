@@ -14,23 +14,18 @@ jobs:
     steps:
       - name: Build
         run: |
-          echo "Current directory: $(pwd)"
-          git clone https://github.com/akifejaz/15_puzzle
-          cd 15_puzzle
-          # make clean
-          # make
+          echo "Current directory: $(pwd): $GITHUB_WORKSPACE"
+          git clone https://github.com/akifejaz/15_puzzle test_dir
+          ls *
 
-          cd ../
-          echo "Current directory: $(pwd)"
-          ls 
-          # find . -name 15_puzzle.spec #-exec readlink -f {} \;
-          mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-          cp 15_puzzle/15_puzzle.spec ~/rpmbuild/SPECS/15_puzzle.spec
-          cp -rf 15_puzzle ~/rpmbuild/SOURCES/15_puzzle-1.0          
-          tar --create --file ~/rpmbuild/SOURCES/15_puzzle-1.0.tar.gz ~/rpmbuild/SOURCES/15_puzzle-1.0
-          cd ..
-          rpmbuild -ba ~/rpmbuild/SPECS/15_puzzle.spec
-          # rpmbuild -ba --define "_topdir $(pwd)/rpmbuild" rpmbuild/SPECS/pakage.spec
+          mkdir $GITHUB_WORKSPACE/rpm_pkg
+          cd $GITHUB_WORKSPACE/rpm_pkg
+          mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp $GITHUB_WORKSPACE/test_dir/15_puzzle.spec rpmbuild/SPECS/15_puzzle.spec
+          cp -rf $GITHUB_WORKSPACE/test_dir rpmbuild/SOURCES/15_puzzle-1.0          
+          tar --create --file rpmbuild/SOURCES/15_puzzle-1.0.tar.gz rpmbuild/SOURCES/15_puzzle-1.0
+          ls $GITHUB_WORKSPACE/rpm_pkg/rpmbuild
+          rpmbuild -ba rpmbuild/SPECS/15_puzzle.spec
           
       - name: Print
         run: |
@@ -40,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: 15_puzzle
-          path: ~/rpmbuild/RPMS/x86_64/15_puzzle-1.0-1.x86_64.rpm
+          path: $GITHUB_WORKSPACE/rpm_pkg/rpmbuild/RPMS
