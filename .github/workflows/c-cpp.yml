@@ -18,7 +18,7 @@ jobs:
           git clone https://github.com/akifejaz/15_puzzle test_dir
           echo "Curr Dir "
           ls
-          "Previous Dir "
+          echo "Previous Dir "
           ls ../
 
           mkdir $GITHUB_WORKSPACE/rpm_pkg
